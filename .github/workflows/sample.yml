@@ -24,6 +24,18 @@ jobs:
       - run: npm test -- --coverage
         env:
           CI: true
+      - name: publish code coverage
+        uses:  actions/upload-artifact@v1
+        with:  
+          name: code-coverage
+          path: coverage
       - name: build project
         if: github.event_name == 'push'
         run: npm run build
+      - name: publish build coverage
+        if: github.event_name == 'push'
+        uses:  actions/upload-artifact@v1
+        with:  
+          name: build
+          path: build
+      
