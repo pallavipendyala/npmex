@@ -13,6 +13,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "12.x"
+      - name: cache npm dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: npm ci
       - run: npm test -- --coverage
         env:
@@ -20,9 +27,3 @@ jobs:
       - name: build project
         if: github.event_name == 'push'
         run: npm run build
-      - name: deploy staging
-        if: github.event_name == 'push'
-        run: npx surge --project ./build --domain quarrelsome-kick.surge.sh
-        env: 
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
