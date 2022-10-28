@@ -1,5 +1,5 @@
 name: issue key
-on: workflow_dispatch
+on: push
 jobs:
   issue:
     runs-on: ubuntu-latest
