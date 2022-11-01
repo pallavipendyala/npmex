@@ -37,7 +37,7 @@ jobs:
         run: npm run build
       - name: publish build coverage
         if: github.event_name == 'push'
-        uses:  actions/upload-artifact@v1
+        uses:  github.ref == 'refs/heads/master'
         with:  
           name: build
           path: build
