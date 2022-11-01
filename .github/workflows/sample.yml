@@ -6,6 +6,7 @@ on:
   #   branches: [develop, master]
    repository_dispatch:
     types: [test_result]
+    branches: [worflow]
 
 
 jobs:
