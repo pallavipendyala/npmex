@@ -5,6 +5,7 @@ on:
   # push:
   #   branches: [develop, master]
   repository_dispatch:
+    branches: [develop]
     types: [test_result]
 
 jobs:
