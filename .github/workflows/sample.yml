@@ -1,9 +1,11 @@
 name: CI
 on: 
-  pull_request: 
-    branches: [develop, master]
-  push:
-    branches: [develop, master]
+  # pull_request: 
+  #   branches: [develop, master]
+  # push:
+  #   branches: [develop, master]
+  repository_dispatch:
+    types: [test_result]
 
 jobs:
   build:
